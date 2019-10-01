@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestKuis</string>
+    <string name="noData">Tidak ada data kuis</string>
+</resources>

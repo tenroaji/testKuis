@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     var mSoal = 0
     var mCache: MutableList<String> = mutableListOf()
-    var mHasil: MutableList<String> = mutableListOf()
     var data: MutableList<Kuis> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +29,9 @@ class MainActivity : AppCompatActivity() {
                     R.id.radioC -> mCache.add("c")
                     R.id.radioD -> mCache.add("d")
                 }
-                if (mCache[mSoal] == data[mSoal].jawaban) {
-                    mHasil.add("benar")
-                } else {
-                    mHasil.add("salah")
-                }
 
                 if (mSoal == data.size - 1) {
                     var intent = Intent(this, DetailActivity::class.java)
-                    intent.putExtra("hasil", ArrayList(mHasil))
                     intent.putExtra("soal", ArrayList(data))
                     intent.putExtra("cache", ArrayList(mCache))
                     startActivity(intent)
@@ -55,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         radioGroup.clearCheck()
         mSoal = 0
-        mHasil.clear()
         mCache.clear()
         setData(0)
     }

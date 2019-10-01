@@ -9,7 +9,7 @@ import com.lagecong.testkuis.data.models.Kuis
 import com.lagecong.testkuis.ui.detail_kuis.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     var mSoal = 0
     var mCache: MutableList<String> = mutableListOf()
     var mHasil: MutableList<String> = mutableListOf()
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity(){
         buttonNext.setOnClickListener {
             var pilihan = radioGroup.checkedRadioButtonId
             if (pilihan == -1) {
-            Toast.makeText(this,"Silihkan pilih jawabannya !!",Toast.LENGTH_LONG).show()
-            }else{
+                Toast.makeText(this, "Silihkan pilih jawabannya !!", Toast.LENGTH_LONG).show()
+            } else {
                 when (pilihan) {
                     R.id.radioA -> mCache.add("a")
                     R.id.radioB -> mCache.add("b")
@@ -44,11 +44,7 @@ class MainActivity : AppCompatActivity(){
                     startActivity(intent)
                 } else {
                     mSoal++
-                    tvSoal.text = data[mSoal].soal
-                    radioA.text = data[mSoal].choiceA
-                    radioB.text = data[mSoal].choiceB
-                    radioC.text = data[mSoal].choiceC
-                    radioD.text = data[mSoal].choiceD
+                    setData(mSoal)
                 }
                 radioGroup.clearCheck()
             }
@@ -61,9 +57,10 @@ class MainActivity : AppCompatActivity(){
         mSoal = 0
         mHasil.clear()
         mCache.clear()
-        setData()
+        setData(0)
     }
-    fun setData(){
+
+    fun setData(pos: Int) {
         tvSoal.text = data[0].soal
         radioA.text = data[0].choiceA
         radioB.text = data[0].choiceB
@@ -71,7 +68,7 @@ class MainActivity : AppCompatActivity(){
         radioD.text = data[0].choiceD
     }
 
-    fun tambahData(){
+    fun tambahData() {
         data.run {
             add(
                 Kuis(
